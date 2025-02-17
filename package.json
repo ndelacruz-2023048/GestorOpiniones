@@ -1,0 +1,16 @@
+{
+  "name": "gestoropiniones",
+  "version": "1.0.0",
+  "description": "System to manage the differente opinions of people",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "opinions",
+    "people",
+    "manage"
+  ],
+  "author": "Nery de la Cruz (ND)",
+  "license": "MIT"
+}
