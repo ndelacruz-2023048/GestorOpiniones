@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
-export const Publications = Schema({
+const Publication = Schema({
     title:{
         type:String,
         required:[true, "Title is required"]
@@ -19,3 +19,5 @@ export const Publications = Schema({
     timestamps:true
 }
 )
+
+export default model('Publication',Publication)

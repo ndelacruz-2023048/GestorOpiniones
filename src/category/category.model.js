@@ -1,4 +1,6 @@
-export const Category = Schema({
+import { model, Schema } from "mongoose";
+
+const Category = Schema({
     name:{
         type:String,
         required:[true, "Name is required"]
@@ -11,3 +13,5 @@ export const Category = Schema({
 {
     timestamps:true
 })
+
+export default model('Category',Category)
