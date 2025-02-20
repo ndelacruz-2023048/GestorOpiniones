@@ -11,7 +11,7 @@ const Publication = Schema({
     },
     category:{
         type: Schema.Types.ObjectId,
-        ref:'Categories',
+        ref:'Category',
         required:[true, "Category is required"]
     }
 },

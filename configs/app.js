@@ -3,7 +3,9 @@ import express from "express"
 import cors from 'cors'
 import helmet from "helmet"
 import morgan from "morgan"
-import routesCategory from '../src/category/category.routes.js'
+import routesPublications from '../src/publications/publications.routes.js'
+import routesCategories from '../src/category/category.routes.js'
+import { defaultCategories } from "../src/category/category.controller.js"
 
 const configs = (app)=>{
     app.use(express.json())
@@ -14,7 +16,8 @@ const configs = (app)=>{
 }
 
 const routes = (app)=>{
-    app.use(routesCategory)
+    app.use(routesPublications)
+    app.use(routesCategories)
 }
 
 
@@ -23,6 +26,7 @@ export const initServer=()=>{
     try {
         configs(app)
         routes(app)
+        defaultCategories()
         app.listen(process.env.PORT)
         console.log(`Server running in port ${process.env.PORT}`)
     } catch (error) {
