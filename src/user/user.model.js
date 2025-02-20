@@ -15,7 +15,8 @@ export const user = Schema({
     },
     username:{
         type:String,
-        required:[true,'The username is required']
+        required:[true,'The username is required'],
+        lowercase:true
     },
     email:{
         type:String,
@@ -24,6 +25,12 @@ export const user = Schema({
     password:{
         type:String,
         required:[true,'The password is required']
+    },
+    role:{
+        type:String,
+        enum:['client','admin'],
+        required:[true,'The roles is required'],
+        default:'client'
     }
 })
 
