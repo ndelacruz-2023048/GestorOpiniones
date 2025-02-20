@@ -9,7 +9,7 @@ const Publication = Schema({
         type:String,
         required:[true, "Main text is required"]
     },
-    category:{
+    categoryId:{
         type: Schema.Types.ObjectId,
         ref:'Category',
         required:[true, "Category is required"]
