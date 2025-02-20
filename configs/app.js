@@ -5,6 +5,7 @@ import helmet from "helmet"
 import morgan from "morgan"
 import routesPublications from '../src/publications/publications.routes.js'
 import routesCategories from '../src/category/category.routes.js'
+import routesUser from '../src/user/user.routes.js'
 import { defaultCategories } from "../src/category/category.controller.js"
 
 const configs = (app)=>{
@@ -18,6 +19,7 @@ const configs = (app)=>{
 const routes = (app)=>{
     app.use(routesPublications)
     app.use(routesCategories)
+    app.use(routesUser)
 }
 
 

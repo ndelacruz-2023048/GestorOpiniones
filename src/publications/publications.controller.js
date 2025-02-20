@@ -1,5 +1,6 @@
 import Publication from './publications.model.js'
 import Category from '../category/category.model.js'
+import { isValidObjectId } from 'mongoose'
 
 export const getPublications = async(request, response)=>{
     try {
@@ -31,8 +32,37 @@ export const newPublication = async(request,response)=>{
 
 export const updatePublication = async(request,response)=>{
     try {
+        const dataToUpdate= request.body
+        const {publicationId} = request.params
+
+        //Validamos si es una id valid
+        if(!isValidObjectId(publicationId)){
+            return response.status(400).send({success:false,message:"Please give a Object Id valid"})
+        }
+        
+        //Validamos que se una id de una publicacion
+        let isValidPublicationId = await Publication.findOne({_id:publicationId})
+        if(!isValidPublicationId){
+            return response.status(400).send({success:false,message:"Publication Id is not valid"})
+        }
+        
+        //Validamos que no venga el atributo categoryId
+        if ("categoryId" in dataToUpdate){
+            return response.status(400).send({sucess:false,message:"You can't update the atribute categoryId"})
+        }
+    
+        let publicationUpdated = await Publication.findByIdAndUpdate(publicationId,dataToUpdate)
+
+        response.status(200).send({success:true,message:"Publication updated succesfully!!!",publicationUpdated})
+    } catch (error) {
+        response.status(500).send({success:false,message:"Internal server error"},error)
+    }
+}
+
+export const deletePublication = async(request,response)=>{
+    try {
         
     } catch (error) {
-        
+        response.status(500).send({success:false,message:"Internval server error",error})
     }
 }
