@@ -13,6 +13,11 @@ const Publication = Schema({
         type: Schema.Types.ObjectId,
         ref:'Category',
         required:[true, "Category is required"]
+    },
+    userId:{
+        type:Schema.Types.ObjectId,
+        ref:'User',
+        required:[true,'User Id is required']
     }
 },
 {

@@ -44,13 +44,14 @@ export const login = async (request,response)=>{
             let  isValidPassword = await verifyPassword(dataUser.password,password)
             if(isValidPassword){
                 let userPayload = {
+                    uid:dataUser._id,
                     name:dataUser.name,
                     age:dataUser.age,
                     email:dataUser.email,
                     username:dataUser.username
                 }
                 let token = await generateJwt(userPayload)
-                return response.status(200).send({success:true,message:"Welcome to the Opinions Gestion",token})
+                return response.status(200).send({success:true,message:"Welcome to the Opinions Gestion",user:userPayload,token})
             }
         }
 

@@ -61,7 +61,30 @@ export const updatePublication = async(request,response)=>{
 
 export const deletePublication = async(request,response)=>{
     try {
+        let {publicationId} = request.params
+
+        //Validamos si es una id valid
+        if(!isValidObjectId(publicationId)){
+            return response.status(400).send({success:false,message:"Please give a Object Id valid"})
+        }
         
+        //Validamos que se una id de una publicacion
+        let isValidPublicationId = await Publication.findOne({_id:publicationId})
+        if(!isValidPublicationId){
+            return response.status(400).send({success:false,message:"Publication Id is not valid"})
+        }
+
+        //Validamos que el usuario no tenga publicaciones
+        let publicationsByUser = await Publication.find({userId:request.user.uid})
+        // console.log(publicationsByUser)
+        if(publicationsByUser.length ===0){
+            return response.status(400).send({success:false,message:"You don't have publications yet!!!"})
+        }
+
+        let isAuthorizedToDeleteCategory = await Publication.findOne({_id:publicationId,userId:request.user.uid})
+        console.log(isAuthorizedToDeleteCategory)
+
+        response.status(200).send({success:true,message:"Publication deleted succesfully!!!"})
     } catch (error) {
         response.status(500).send({success:false,message:"Internval server error",error})
     }
