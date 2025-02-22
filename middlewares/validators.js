@@ -25,6 +25,16 @@ export const registerClient = [
     validateErrors
 ]
 
+export const registerComment = [
+    body('content','Content is required').notEmpty(),
+    body('reactionsCount','ReactionsCount is required').notEmpty(),
+    body('visibility','Visibility is required').notEmpty().isIn(['public','private','friends_only','followers_only']).withMessage('This type of visibility is not allowed'),
+    body('reported','Reported is required').notEmpty(),
+    body('userId','UserId is required').notEmpty().custom(validateObjectId),
+    body('publicationId','PublicationId is required').notEmpty(),
+    validateErrors
+]
+
 export const validateLogin = [
     body('userloggin','Userloggin is required').notEmpty(),
     body('password','Password is required').notEmpty(),

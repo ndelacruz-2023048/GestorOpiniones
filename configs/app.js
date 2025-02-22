@@ -7,6 +7,8 @@ import routesPublications from '../src/publications/publications.routes.js'
 import routesCategories from '../src/category/category.routes.js'
 import routesUser from '../src/user/user.routes.js'
 import routesAuth from "../src/auth/auth.routes.js"
+import routesComments from '../src/comments/comments.routes.js'
+
 import { defaultCategories } from "../src/category/category.controller.js"
 import { defaultAdmin } from "../src/user/user.controller.js"
 
@@ -23,6 +25,7 @@ const routes = (app)=>{
     app.use(routesCategories)
     app.use(routesUser)
     app.use(routesAuth)
+    app.use(routesComments)
 }
 
 
