@@ -7,7 +7,20 @@ export const newComment = async (request, response) => {
     try {
         let data = request.body
         let {userId,publicationId } = data
+        if('reported' in data){
+            if(data.reported !== Boolean){
+                return response.status(400).send({ success: false, message: "Atribute reported must be a boolean" })
+            }
+        }
 
+        if('reactionsCount' in data){
+            if(isNaN(Number(data.reactionsCount))){
+                return response.status(400).send({ success: false, message: "Atribute reactionsCount must be a number" })
+            }
+            
+        }
+
+        
         //Validamos si el id de la publicacion es valido
         if (!isValidObjectId(publicationId) || !isValidObjectId(userId)) {
             return response.status(400).send({ success: false, message: "Please give a Objects Id valid" })
