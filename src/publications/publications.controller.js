@@ -82,9 +82,13 @@ export const deletePublication = async(request,response)=>{
         }
 
         let isAuthorizedToDeleteCategory = await Publication.findOne({_id:publicationId,userId:request.user.uid})
-        console.log(isAuthorizedToDeleteCategory)
+        if(!isAuthorizedToDeleteCategory){
+            return response.status(400).send({success:false,message:'You are not authorized to delete this publication'})
+        }
 
-        response.status(200).send({success:true,message:"Publication deleted succesfully!!!"})
+        let publicationDeleted = await Publication.findByIdAndDelete(publicationId)
+
+        response.status(200).send({success:true,message:"Publication deleted succesfully!!!",publicationDeleted})
     } catch (error) {
         response.status(500).send({success:false,message:"Internval server error",error})
     }
