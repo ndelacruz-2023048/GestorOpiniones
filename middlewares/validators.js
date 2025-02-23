@@ -58,3 +58,14 @@ export const validateLogin = [
     body('password','Password is required').notEmpty(),
     validateErrors
 ]
+
+export const validateUpdateUser = [
+    body('name','Name is required').optional().notEmpty(),
+    body('lastname','Lastname is required').optional().notEmpty(),
+    body('age','Age is required').optional().notEmpty(),
+    body('username','Username is required').optional().notEmpty().toLowerCase(),
+    body('email','Email is required').optional().notEmpty().isEmail().toLowerCase(),
+    body('oldPassword','OldPassword is required').notEmpty(),
+    body('newPassword','Password is required').notEmpty().isStrongPassword().withMessage("Is not a strong password"),
+    validateErrors
+]

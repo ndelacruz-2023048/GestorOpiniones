@@ -110,7 +110,6 @@ export const deleteCategory = async(request,response)=>{
 
         await Category.findByIdAndDelete(categoryId)
 
-
         response.status(200).send({sucess:true,message:"Category deleted successfully",category})
     } catch (error) {
         response.status(500).send({sucess:false,message:"Internal Server Error",error})
