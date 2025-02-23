@@ -18,11 +18,14 @@ export const newPublication = async(request,response)=>{
     try {
         const data = request.body
         const {title,mainText,categoryId} = data
+        const {uid} = request.user
+        console.log("🚀 ~ newPublication ~ uid:", uid)
         const isValidCategoryId = await Category.findOne({_id:categoryId})
         if(!isValidCategoryId){
             return response.status(400).send({success:false,message:'Invalid category'})
         }
         const publication = new Publication(data)
+        publication.userId = uid
         await publication.save()
         response.status(201).send({success:true,message:'Publication created',data:publication})
     } catch (error) {
