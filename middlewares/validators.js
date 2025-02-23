@@ -30,8 +30,19 @@ export const registerComment = [
     body('visibility','Visibility is required').notEmpty().isIn(['public','private','friends_only','followers_only']).withMessage('This type of visibility is not allowed'),
     body('userId','UserId is required').notEmpty().custom(validateObjectId),
     body('publicationId','PublicationId is required').notEmpty(),
+    body('reactionsCount','ReactionsCount is required').optional().notEmpty().isNumeric().withMessage('Expected a number'),
+    body('reported','Reported is required').optional().notEmpty().withMessage('Empty field').isBoolean().withMessage('Expected a boolean'),
     validateErrors
 ]
+
+export const validateUpdateComment = [
+    body('content','Content is required').notEmpty(),
+    body('visibility','Visibility is required').optional().notEmpty().isIn(['public','private','friends_only','followers_only']).withMessage('This type of visibility is not allowed'),
+    body('reactionsCount','ReactionsCount is required').optional().notEmpty().isNumeric().withMessage('Expected a number'),
+    body('reported','Reported is required').optional().notEmpty().withMessage('Empty field').isBoolean().withMessage('Expected a boolean'),
+    validateErrors
+]
+
 
 export const validateLogin = [
     body('userloggin','Userloggin is required').notEmpty(),
