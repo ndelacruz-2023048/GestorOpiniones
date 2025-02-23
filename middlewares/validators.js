@@ -41,6 +41,17 @@ export const validateUpdateComment = [
     validateErrors
 ]
 
+export const registerCategory = [
+    body('name','Name is required').notEmpty(),
+    body('description','Description is required').notEmpty(),
+    validateErrors
+]
+
+export const validateUpdateCategory = [
+    body('name','Name is required').optional().notEmpty(),
+    body('description','Description is required').notEmpty(),
+    validateErrors
+]
 
 export const validateLogin = [
     body('userloggin','Userloggin is required').notEmpty(),

@@ -8,11 +8,6 @@ const Category = Schema({
     description:{
         type:String,
         required:[true, "Description is required"]
-    },
-    isDefault:{
-        type:Boolean,
-        required:true,
-        default:false
     }
 },
 {
