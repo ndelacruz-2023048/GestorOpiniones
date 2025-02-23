@@ -1,4 +1,5 @@
 import Publication from './publications.model.js'
+import Comment from '../comments/comments.model.js'
 import Category from '../category/category.model.js'
 import { isValidObjectId } from 'mongoose'
 
@@ -19,7 +20,6 @@ export const newPublication = async(request,response)=>{
         const data = request.body
         const {title,mainText,categoryId} = data
         const {uid} = request.user
-        console.log("🚀 ~ newPublication ~ uid:", uid)
         const isValidCategoryId = await Category.findOne({_id:categoryId})
         if(!isValidCategoryId){
             return response.status(400).send({success:false,message:'Invalid category'})
@@ -37,6 +37,7 @@ export const updatePublication = async(request,response)=>{
     try {
         const dataToUpdate= request.body
         const {publicationId} = request.params
+        const {uid} = request.user
 
         //Validamos si es una id valid
         if(!isValidObjectId(publicationId)){
@@ -48,12 +49,12 @@ export const updatePublication = async(request,response)=>{
         if(!isValidPublicationId){
             return response.status(400).send({success:false,message:"Publication Id is not valid"})
         }
-        
-        //Validamos que no venga el atributo categoryId
-        if ("categoryId" in dataToUpdate){
-            return response.status(400).send({sucess:false,message:"You can't update the atribute categoryId"})
+
+        const isAuthorizedToUpdatePublication = await Publication.findOne({_id:publicationId,userId:uid})
+        if(!isAuthorizedToUpdatePublication){
+            return response.status(401).send({success:false,message:'You are not authorized to update this publication'})
         }
-    
+
         let publicationUpdated = await Publication.findByIdAndUpdate(publicationId,dataToUpdate)
 
         response.status(200).send({success:true,message:"Publication updated succesfully!!!",publicationUpdated})
@@ -85,13 +86,15 @@ export const deletePublication = async(request,response)=>{
         }
 
         let isAuthorizedToDeleteCategory = await Publication.findOne({_id:publicationId,userId:request.user.uid})
+
         if(!isAuthorizedToDeleteCategory){
-            return response.status(400).send({success:false,message:'You are not authorized to delete this publication'})
+            return response.status(401).send({success:false,message:'You are not authorized to delete this publication'})
         }
 
         let publicationDeleted = await Publication.findByIdAndDelete(publicationId)
+        await Comment.deleteMany({publicationId})
 
-        response.status(200).send({success:true,message:"Publication deleted succesfully!!!",publicationDeleted})
+        response.status(200).send({success:true,message:"Publication deleted and comments relationated!!!",publicationDeleted})
     } catch (error) {
         response.status(500).send({success:false,message:"Internval server error",error})
     }

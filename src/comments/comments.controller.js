@@ -51,10 +51,7 @@ export const getCommentByUser = async (request, response) => {
 export const newComment = async (request, response) => {
     try {
         let data = request.body
-        let { userId, publicationId } = data
-
-        //Validamos que se una id de un usuario
-        if(!await validateUserId(userId, response)) return
+        let { publicationId } = data
         
         //Validamos que se una id de una publicacion
         let isValidPublicationId = await Publication.findOne({ _id: publicationId })
@@ -63,6 +60,7 @@ export const newComment = async (request, response) => {
         }
 
         const comment = new Comment(data)
+        comment.userId = request.user.uid
         comment.save()
 
         response.status(200).send({ success: true, message: 'Comment created', comment })

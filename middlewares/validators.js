@@ -11,7 +11,6 @@ export const registerPublication = [
 export const updateValidPublication = [
     body('title','Title is required').notEmpty(),
     body('mainText','MainText is required').notEmpty(),
-    body('categoryId','Category is required').custom(isEmptyCategoryId),
     validateErrors
 ]
 
@@ -28,7 +27,6 @@ export const registerClient = [
 export const registerComment = [
     body('content','Content is required').notEmpty(),
     body('visibility','Visibility is required').notEmpty().isIn(['public','private','friends_only','followers_only']).withMessage('This type of visibility is not allowed'),
-    body('userId','UserId is required').notEmpty().custom(validateObjectId),
     body('publicationId','PublicationId is required').notEmpty(),
     body('reactionsCount','ReactionsCount is required').optional().notEmpty().isNumeric().withMessage('Expected a number'),
     body('reported','Reported is required').optional().notEmpty().withMessage('Empty field').isBoolean().withMessage('Expected a boolean'),
