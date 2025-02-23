@@ -1,0 +1,735 @@
+{
+	"info": {
+		"_postman_id": "96d592a9-782f-4a6c-bd1c-060773487350",
+		"name": "GestorOpiniones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956955"
+	},
+	"item": [
+		{
+			"name": "Publications",
+			"item": [
+				{
+					"name": "getPublications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:2636/publications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"publications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newPublication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Dados y demas",
+									"type": "text"
+								},
+								{
+									"key": "mainText",
+									"value": "En los últimos años, la industria de la moda ha comenzado a adoptar prácticas más sostenibles debido al creciente impacto ambiental que genera. El consumo masivo y la producción rápida de ropa están causando daños irreparables al medio ambiente.",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "67ba9b01a5f8b398b3c7673a",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/publications_save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"publications_save"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePublication",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Juegos para aprender IA",
+									"type": "text"
+								},
+								{
+									"key": "mainText",
+									"value": "El aprender IA es fundamental hoy en dia, ya que nos ayuda en tareas repetitivas y enforcarnos en tareas mas complejas , que requieren nuestra atencion",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/publications_update/67ba8616c0ea830a20f12f40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"publications_update",
+								"67ba8616c0ea830a20f12f40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletePublication",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:2636/publications_delete/67ba8fd9bd3474659e0b446a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"publications_delete",
+								"67ba8fd9bd3474659e0b446a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "getCategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:2636/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Noticias y Actualidad",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Eventos globales, política, economía, tecnología",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/category_new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"category_new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Trabajo",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Logros, consejos laborales, ofertas de empleo",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/category_update/67ba9b01a5f8b398b3c7673a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"category_update",
+								"67ba9b01a5f8b398b3c7673a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:2636/category_delete/67ba9b01a5f8b398b3c7673a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"category_delete",
+								"67ba9b01a5f8b398b3c7673a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "YourProfileInformation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:2636/getUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"getUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateYourProfile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Paco",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Perez",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "23",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "paco",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "paco@outlook.edu.gt",
+									"type": "text"
+								},
+								{
+									"key": "oldPassword",
+									"value": "luc12@fdfbA",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "luc12@dataA",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/profile_update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"profile_update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Lucas",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Lozada",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "23",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "lucas12",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "lucas@outlook.edu.gt",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "luc12@fdfbA",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginAsAdmin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody)\r",
+									"postman.setGlobalVariable('token',data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userloggin",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin196@#$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginAsClient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody)\r",
+									"postman.setGlobalVariable('token',data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userloggin",
+									"value": "lucas12",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "luc12@fdfbA",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "NewComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "La inteligencia artificial está transformando el mercado laboral a un ritmo impresionante. Si bien automatiza muchas tareas repetitivas y mejora la eficiencia, también plantea el desafío de la adaptación para los trabajadores.",
+									"type": "text"
+								},
+								{
+									"key": "reactionsCount",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "visibility",
+									"value": "public",
+									"type": "text"
+								},
+								{
+									"key": "reported",
+									"value": "true",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "publicationId",
+									"value": "67ba8e476a5f14ceb0986839",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/comment_new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"comment_new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateComment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "pioopio",
+									"type": "text"
+								},
+								{
+									"key": "visibility",
+									"value": "private",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "reactionsCount",
+									"value": "56",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "reported",
+									"value": "true",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/comment_update/67ba80ecf04225031adfde31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"comment_update",
+								"67ba80ecf04225031adfde31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListCommentsUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:2636/comment_by_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"comment_by_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:2636/comment_delete/67ba809eeaf34e2b1b37d739",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"comment_delete",
+								"67ba809eeaf34e2b1b37d739"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
